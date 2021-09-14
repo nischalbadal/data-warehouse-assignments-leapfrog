@@ -49,7 +49,7 @@ We Identify the entity and attributes to logically model the data. It is explain
 In our given data set, there are data of employee and timesheet in weeks. To create the data warehouse, we need to classify them into fact table and dimensions table. The proposed data warehouse logical structure for the mentioned requirements could be:
 
 
-
+![Logical ER Model](er-logical.drawio.png)
 `				`*Fig: Logical ER Model of Data Warehouse*
 
 Now let us see how this ER model satisfies our requirements:
