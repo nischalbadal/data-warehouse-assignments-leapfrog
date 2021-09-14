@@ -50,6 +50,7 @@ In our given data set, there are data of employee and timesheet in weeks. To cre
 
 
 ![Logical ER Model](er-logical.drawio.png)
+
 `				`*Fig: Logical ER Model of Data Warehouse*
 
 Now let us see how this ER model satisfies our requirements:
