@@ -1,20 +1,13 @@
-import psycopg2
+from utils import connect
 import json
 from psycopg2.extras import Json
 from lxml import etree
 
-def connect():
-    return psycopg2.connect(
-        host = 'localhost',
-        database = 'data-internship',
-        user='postgres',
-        password='nischal541',
-        port = 5432
-    )
 
 try:
     connection = connect()
     cursor = connection.cursor()
+
     def truncate_employee_data():
             with open("../sql/queries/truncate_employee_data.sql") as f:
                 sql = ' '.join(map(str, f.readlines()))
@@ -50,6 +43,7 @@ try:
         root = etree.parse(fileName)
         for i in root.findall("Employee"):
             values = [i.find(n).text for n in ("employee_id", "first_name", "last_name", "department_id", "department_name","manager_employee_id","employee_role","salary","hire_date","terminated_date","terminated_reason","dob","fte","location")]
+            values = ['' if v is None else v for v in values]
             value_str = "(" + str(values)[1:-1] + ");"
             insert_query = '''
                             INSERT INTO raw_employee ("employee_id", "first_name", "last_name", "department_id", "department_name","manager_employee_id","employee_role","salary","hire_date","terminated_date","terminated_reason","dob","fte","location") 

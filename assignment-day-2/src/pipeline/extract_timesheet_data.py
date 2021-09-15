@@ -1,13 +1,4 @@
-import psycopg2
-
-def connect():
-    return psycopg2.connect(
-        host = 'localhost',
-        database = 'data-internship',
-        user='postgres',
-        password='nischal541',
-        port = 5432
-    )
+from utils import connect
 
 try:
     connection = connect()
@@ -29,7 +20,7 @@ try:
                     row = line[:-1].split(",")
                     with open("../sql/queries/extract_timesheet_data.sql") as f:
                         insert_query = ' '.join(map(str, f.readlines()))
-                       
+                        
                         cursor.execute(insert_query, row)       
                         connection.commit()
                         
