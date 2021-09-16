@@ -1,9 +1,7 @@
-﻿ETL Design - Day 3 Assignment
-
-Prepared by Nischal badal
+﻿** Extracting the data from the Database
 
 
-**1. Extract data from a  Database**
+**1. Coonecting to the database**
 
 [//]:comment
 
@@ -18,8 +16,11 @@ Prepared by Nischal badal
         )
 ~~~
 
-connect to the database using psycopg2
+Connection to the database using psycopg2. This method placed in utils.py and imported wherever it is needed in the script.
 
+~~~ python
+from utils import connect
+~~~
 ---
 ~~~ python
   CREATE TABLE raw_sales_db(
@@ -53,8 +54,9 @@ Creating Raw Sales table to extract the data into.
             source_connection.commit()
 
 ~~~
+The truncate_table.sql [a link](https://github.com/nischalbadal/data-warehouse-assignments-leapfrog/blob/day-3/assignment-day-3/src/sql/queries/truncate_table.sql) contains the truncate query.
 
-**2. Extracting the joined data into the database**
+**3. Extracting the joined data into the database**
 ---
 ~~~ python
       def extract_sales_db_data():
@@ -71,3 +73,11 @@ Creating Raw Sales table to extract the data into.
                 dest_connection.commit()
 ~~~
 
+
+**4. Calling the Functions**
+---
+~~~ python
+      if __name__ == "__main__":
+        truncate_existing_data()
+        extract_sales_db_data()
+~~~
