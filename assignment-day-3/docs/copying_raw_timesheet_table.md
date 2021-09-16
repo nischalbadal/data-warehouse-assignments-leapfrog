@@ -1,10 +1,10 @@
 ** Creating an archive table or copy table of tables
-
+---
 An archive table or copy table is created of the tables which contains similar data as of the table. It can be used as a backup table so that we can retrieve the data if the main table is changed or transformed.
 
 
-**1. Coonecting to the database**
-
+**1. Connecting to the database**
+---
 [//]:comment
 
 ~~~ python
@@ -40,9 +40,9 @@ from utils import connect
 
 Creating copy_raw_timesheet and copy_raw_employee table to which we copy the tables afterwards.
 
----
-**2. Truncating Previous Data from the Database**
 
+**2. Truncating Previous Data from the Database**
+---
 ~~~python
 
     def truncate_table(table_name):

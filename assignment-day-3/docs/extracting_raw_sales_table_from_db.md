@@ -1,8 +1,8 @@
 ﻿** Extracting the data from the Database
+---
 
-
-**1. Coonecting to the database**
-
+**1. Connecting to the database**
+---
 [//]:comment
 
 ~~~ python
@@ -41,9 +41,9 @@ from utils import connect
 Creating Raw Sales table to extract the data into.
 
 
----
-**2. Truncating Previous Data from the Database**
 
+**2. Truncating Previous Data from the Database**
+---
 ~~~python
  def truncate_existing_data():
         table_name ="raw_sales_db"
