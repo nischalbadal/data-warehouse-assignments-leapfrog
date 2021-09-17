@@ -48,3 +48,5 @@ except Exception as e:
 finally:
     cursor.close()
     connection.close()
+
+    

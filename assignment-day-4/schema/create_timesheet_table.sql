@@ -15,3 +15,4 @@ create table if not exists timesheet(
     on_call_hour FLOAT,
     num_teammates_absent INT
 );
+

@@ -7,3 +7,4 @@ create table if not exists copy_raw_timesheet(
     hours_worked VARCHAR(500),
     paycode VARCHAR(500)
 );
+

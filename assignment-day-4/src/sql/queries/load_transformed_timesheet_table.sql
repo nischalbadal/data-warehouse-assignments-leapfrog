@@ -35,3 +35,4 @@ select
                where b.department_id = t.cost_center and b.shift_date = cast(t.punch_apply_date as date)) as num_teammates_absent
 from raw_timesheet t group by employee_id, cost_center, punch_apply_date, paycode 
 having paycode = 'WRK' or paycode='ABSENT' and employee_id <> 'employee_id' order by shift_date asc ;
+

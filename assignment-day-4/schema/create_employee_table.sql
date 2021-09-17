@@ -14,3 +14,4 @@ create table employee(
     weekly_hours float,
     role varchar(200)
 );
+

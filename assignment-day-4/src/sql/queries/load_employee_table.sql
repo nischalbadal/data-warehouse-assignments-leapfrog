@@ -17,3 +17,4 @@ select
 from raw_employee
 join department d on raw_employee.department_id = d.client_department_id
 where employee_id <> 'employee_id';
+

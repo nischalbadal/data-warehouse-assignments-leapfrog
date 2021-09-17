@@ -3,3 +3,4 @@ create table department(
     client_department_id varchar(200),
     department_name varchar(200)
 );
+

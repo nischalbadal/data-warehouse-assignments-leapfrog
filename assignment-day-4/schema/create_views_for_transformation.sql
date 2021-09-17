@@ -25,3 +25,4 @@ as
 select  cost_center as department_id, cast(punch_apply_date as date) as shift_date, count(*) as absent_team_members
 from raw_timesheet group by  cost_center, punch_apply_date, paycode
 having paycode='ABSENT';
+

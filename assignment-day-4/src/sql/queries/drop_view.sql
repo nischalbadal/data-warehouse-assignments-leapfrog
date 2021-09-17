@@ -1,1 +1,2 @@
 DROP VIEW IF EXISTS %s;
+

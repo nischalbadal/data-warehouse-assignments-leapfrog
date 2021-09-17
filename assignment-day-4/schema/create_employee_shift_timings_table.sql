@@ -6,3 +6,5 @@ create table if not exists employee_shift_timings(
     shift_type varchar(250),
     hours_worked numeric(5,2)
 );
+
+ 
