@@ -1,6 +1,6 @@
 create table employee(
     id serial primary key,
-    client_employee_id varchar(200) unique,
+    client_employee_id varchar(200),
     department_id varchar(200),
     first_name varchar(200),
     last_name varchar(200),
