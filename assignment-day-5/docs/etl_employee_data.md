@@ -3,6 +3,7 @@
 
 After successful extraction and transformation, we now load the Timesheet data into the Data Warehouse previously designed. 
 
+![Final Warehouse Design](employee-timesheet-warehouse.png)
 
 The steps for loading the data into the respective facts and dimension tables are as follows:
 
