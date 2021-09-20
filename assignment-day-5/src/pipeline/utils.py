@@ -27,3 +27,4 @@ def drop_view(view_name, con, cur):
         cur.execute(sql)       
         con.commit()
 
+        
