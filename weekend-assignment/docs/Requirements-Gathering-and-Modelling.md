@@ -60,3 +60,109 @@ The proposed ER Diagram of the data warehouse would be:
 
 After conceptual modeling of the system, we now build the physical modeling (or implementation) of the data warehouse. Physical Modeling is done using the postgresql database. All the DDL queries of the physical model of the data warehouse are listed below:
 
+Creating Main schema for data warehouse tables:
+```sql
+create schema ecom;
+```
+Creating Dimension Tables:
+```sql
+create table ecom.dim_active_status(
+  id SERIAL PRIMARY KEY,
+  status CHAR NOT NULL
+);
+```
+
+```sql
+create table ecom.dim_brand(
+    id SERIAL PRIMARY KEY,
+    brand_name VARCHAR(250) NOT NULL
+);
+```
+```sql
+create table ecom.dim_category(
+    id SERIAL PRIMARY KEY,
+    category_name VARCHAR(250) NOT NULL
+);
+```
+```sql
+create table ecom.dim_customer(
+    customer_id INT PRIMARY KEY,
+    user_name VARCHAR(250) UNIQUE NOT NULL,
+    first_name VARCHAR(250) NOT NULL,
+    last_name VARCHAR(250) NOT NULL,
+    country VARCHAR(250) NOT NULL,
+    town VARCHAR(250) NOT NULL,
+    active BOOLEAN NOT NULL
+);
+```
+```sql
+create table ecom.dim_period(
+   id SERIAL PRIMARY KEY,
+   start_date DATE NOT NULL,
+   end_date DATE NOT NULL
+);
+```
+```sql
+create table ecom.dim_uom(
+    id SERIAL PRIMARY KEY,
+    uom_name VARCHAR(250) NOT NULL
+);
+```
+Similarly creating Facts Table: 
+```sql
+create table ecom.fact_product(
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(250) NOT NULL,
+    description VARCHAR(250) ,
+    price FLOAT NOT NULL,
+    mrp FLOAT NOT NULL,
+    pieces_per_case FLOAT NOT NULL,
+    weight_per_case FLOAT NOT NULL,
+    uom_id INT NOT NULL references ecom.dim_uom(id),
+    brand_id INT NOT NULL references ecom.dim_brand(id),
+    category_id INT NOT NULL references ecom.dim_category(id),
+    tax_percent FLOAT NOT NULL,
+    active_status_id INT NOT NULL references ecom.dim_active_status(id),
+    created_by VARCHAR(250),
+    created_at TIMESTAMP,
+    updated_by VARCHAR(250),
+    updated_at TIMESTAMP
+);
+```
+```sql
+create table ecom.fact_sale_product(
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL references ecom.fact_product(product_id),
+    time_period_id INT NOT NULL references ecom.dim_period(id),
+    total_quantity_sold FLOAT NOT NULL ,
+    unit_price FLOAT NOT NULL ,
+    total_gross_price FLOAT NOT NULL,
+    total_tax_price FLOAT NOT NULl
+);
+```
+```sql
+create table ecom.fact_sale(
+    id INT NOT NULL,
+    transaction_id INT NOT NULL,
+    bill_no INT NOT NULL,
+    bill_date DATE NOT NULL,
+    bill_loaction VARCHAR(250),
+    customer_id INT NOT NULL references ecom.dim_customer(customer_id),
+    product_id INT NOT NULL references ecom.fact_product(product_id),
+    quantity FLOAT NOT NULL,
+    uom_id INT NOT NULL references ecom.dim_uom(id),
+    price FLOAT NOT NULL,
+    gross_price FLOAT NOT NULL,
+    tax_pc FLOAT NOT NULL default 0,
+    tax_amount FLOAT NOT NULL,
+    discount_pc FLOAT NOT NULL default 0,
+    discount_amount FLOAT NOT NULL default 0,
+    net_bill_amt FLOAT GENERATED ALWAYS AS (gross_price + tax_amount) STORED,
+    created_by VARCHAR(250),
+    updated_by VARCHAR(250),
+    created_date TIMESTAMP,
+    updated_date TIMESTAMP
+);
+```
+
+Hence, this document explains the requirements gathering, conceptual model and physical implementation of sales data warehouse.
