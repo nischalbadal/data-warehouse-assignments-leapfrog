@@ -1,0 +1,7 @@
+employee_id,first_name,last_name,department_id,department_name,manager_employee_id,employee_role,salary,hire_date,terminated_date,terminated_reason,dob,fte,location
+1377208,Tushar,NIYOGI,54013,Medical Telecommunicators,-,Med Telecomm Coordinator,9893,2001-03-26,08-01-2021,Contract Expired,1958-02-20,1,Pokhara
+5011105,Anushka,Manandhar,31288,HMOB GI Procedure,5014147,Clinical Nurse-II,10374,2016-11-07,08-01-2021,Contract Expired,1971-06-10,1,Hetauda
+5011110,Lochan,Maske,31288,HMOB GI Procedure,5014147,Endoscopy Technician,9809,2016-11-07,08-01-2021,Contract Expired,1992-10-30,1,Kathmandu
+5011401,Mahadevi,Khetan,31288,HMOB GI Procedure,5014147,Med Ctr Telecom Spec,4570,2017-08-13,01-01-1700,,1982-09-25,1,Hetauda
+5012329,Maya,Yadav,54013,Medical Telecommunicators,1377208,Med Ctr Telecom Spec,18138,2017-08-13,01-01-1700,,1994-01-25,1,Kathmandu
+5014148,RAMA,Subedi,31288,HMOB GI Procedure,5014147,Stock Clerk,19000,2021-08-01,01-01-1700,,1997-05-05,0.5,Kathmandu
