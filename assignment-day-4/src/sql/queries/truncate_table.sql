@@ -1,0 +1,4 @@
+TRUNCATE TABLE %s;
+
+
+
