@@ -262,7 +262,7 @@ Another reason for iterating through every records of file is that, we can remov
  ```
  All the SQL queries used in the extraction process are stored in a separate file and called from file reading lines that makes our extraction code clean and easier to debug.
  
- The SQL queries used in above extraction and throughout other process of transformation and loading are [here]().
+ The SQL queries used in above extraction and throughout other process of transformation and loading are [here](https://github.com/nischalbadal/data-warehouse-assignments-leapfrog/tree/weekend-assignment/weekend-assignment/src/sql/queries).
  
 ## T - Transformation and L- Loading
 
