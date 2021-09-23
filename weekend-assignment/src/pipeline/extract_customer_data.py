@@ -18,22 +18,29 @@ try:
     
        
     def archive_customer_data(con, cur):
-        with open("../sql/queries/copy_raw_customer.sql") as f:
+        with open("../sql/queries/extract_copy_raw_customer_data.sql") as f:
             sql = ' '.join(map(str, f.readlines())) 
             cur.execute(sql)
             con.commit()
         print("Archiving successful to copy_raw_customer table.") 
 
+    def load_dim_customer(con, cur):
+        truncate_table("dim_customer", con, cur)
+        with open("../sql/queries/extract_dim_customer_data.sql") as f:
+            sql = ' '.join(map(str, f.readlines())) 
+            cur.execute(sql)
+            con.commit()
+        print("Trasformation and Loading to dim_customer table successful.") 
 
     def main():
         con = connect()
         cur = con.cursor()
 
         truncate_table("raw_customer", con, cur)
-        truncate_table("copy_customer_sales", con, cur)
-
+        
         extract_customer_data("../../data/customer_dump.csv",con,cur)
-     
+        archive_customer_data(con, cur)
+        load_dim_customer(con, cur)
 
         cur.close()
         con.close()

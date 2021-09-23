@@ -18,11 +18,18 @@ try:
     
        
     def archive_sales_data(con, cur):
-        with open("../sql/queries/copy_raw_sales.sql") as f:
+        with open("../sql/queries/extract_copy_raw_sales.sql") as f:
             sql = ' '.join(map(str, f.readlines())) 
             cur.execute(sql)
             con.commit()
         print("Archiving successful to copy_raw_sales table.") 
+
+    def load_fact_sales(con, cur):
+        with open("../sql/queries/extract_fact_sales_data.sql") as f:
+            sql = ' '.join(map(str, f.readlines())) 
+            cur.execute(sql)
+            con.commit()
+        print("Transformation and Loading successful to fact_sales table.") 
 
 
     def main():
@@ -33,7 +40,9 @@ try:
         truncate_table("copy_raw_sales", con, cur)
 
         extract_sales_data("../../data/sales_dump.csv",con,cur)
-     
+        archive_sales_data(con, cur)
+
+        load_fact_sales(con, cur)
 
         cur.close()
         con.close()
