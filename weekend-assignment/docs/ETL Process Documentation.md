@@ -661,4 +661,4 @@ def truncate_table(table_name, con, cur):
 ```
 - And lastly, dotenv was used for secret and confidential values as storing database credentials and was extracted from the file when needed.
 
-#### The screenshots of the final tables are [here]().
+#### The screenshots of the final tables are [here](https://github.com/nischalbadal/data-warehouse-assignments-leapfrog/tree/weekend-assignment/weekend-assignment/docs/screenshots).
