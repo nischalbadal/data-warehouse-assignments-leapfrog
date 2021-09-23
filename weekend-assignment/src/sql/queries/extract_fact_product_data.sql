@@ -31,3 +31,4 @@ INNER JOIN dim_uom u on p.uom = u.uom_name
 INNER JOIN dim_brand b on p.brand = b.brand_name
 INNER JOIN dim_category c on INITCAP(p.category) = c.category_name
 INNER JOIN dim_active_status a on p.active = a.status;
+

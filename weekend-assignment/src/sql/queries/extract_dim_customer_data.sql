@@ -7,5 +7,5 @@ regexp_replace(last_name, '[^\w]+_','') AS last_name,
 INITCAP(country) as country,
 town,
 CASE WHEN active = 'Y' THEN true ELSE false end as active
-FROM raw_customer rc;
+FROM raw_customer c;
 

@@ -23,6 +23,15 @@ try:
             cur.execute(sql)
             con.commit()
         print("Archiving successful to copy_raw_sales table.") 
+    
+    def load_dim_uom(con, cur):
+        truncate_table("dim_uom", con, cur)
+        with open("../sql/queries/extract_uom_data.sql") as f:
+            sql = ' '.join(map(str, f.readlines())) 
+            cur.execute(sql)
+            con.commit()
+
+        print("Loading of dim_uom table successful.") 
 
     def load_fact_sales(con, cur):
         with open("../sql/queries/extract_fact_sales_data.sql") as f:
