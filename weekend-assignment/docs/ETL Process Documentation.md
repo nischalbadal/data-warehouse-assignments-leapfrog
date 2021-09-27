@@ -11,6 +11,7 @@
     They are: _raw_customer_, _raw_product_ and _raw_sales_.
 - The  raw tables do not have any specific data types as all of them are stored as string to avoid mismatching of date formats from the incoming raw data. It is afterwards casted into their suitable data types using cast() method of postgresql.
 - We also create archive tables for each raw table to maintain a historic datawarehouse that contails all the records before transformation and loading processes.
+- For archive, we use UPSERT technique that is if the data is not present, it is inserted otherwise it is updated in the existing table record.
 - After successful extraction, we now transform the data to load into our fact and dimension tables. 
 - Some of the transformation applied to the raw data are:
     - Capitalizing first word of category names of products.

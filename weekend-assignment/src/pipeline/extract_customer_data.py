@@ -17,11 +17,18 @@ try:
         print("Extraction successful to raw_customer table.") 
     
        
-    def archive_customer_data(con, cur):
-        with open("../sql/queries/extract_copy_raw_customer_data.sql") as f:
-            sql = ' '.join(map(str, f.readlines())) 
-            cur.execute(sql)
-            con.commit()
+    def archive_customer_data(fileName, con, cur):
+        with open(fileName, 'r') as f:
+            i = 0
+            for line in f:
+                if i==0:
+                    i+=1
+                    continue
+                row = line[:-1].split(",")
+                with open("../sql/queries/extract_copy_raw_customer_data.sql") as f:
+                    sql = ' '.join(map(str, f.readlines())) 
+                    cur.execute(sql, row)
+                    con.commit()
         print("Archiving successful to copy_raw_customer table.") 
 
     def load_dim_customer(con, cur):
@@ -39,7 +46,7 @@ try:
         truncate_table("raw_customer", con, cur)
         
         extract_customer_data("../../data/customer_dump.csv",con,cur)
-        archive_customer_data(con, cur)
+        archive_customer_data("../../data/customer_dump.csv",con, cur)
         load_dim_customer(con, cur)
 
         cur.close()

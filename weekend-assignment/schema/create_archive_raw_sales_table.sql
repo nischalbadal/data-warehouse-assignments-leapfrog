@@ -1,5 +1,5 @@
 CREATE TABLE copy_raw_sales(
-	id VARCHAR(255),
+	id VARCHAR(255) UNIQUE,
 	transaction_id VARCHAR(255),
 	bill_no VARCHAR(255),
 	bill_date VARCHAR(255),

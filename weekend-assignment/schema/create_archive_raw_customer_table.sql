@@ -1,5 +1,5 @@
 CREATE TABLE copy_raw_customer(
-	customer_id VARCHAR(255),
+	customer_id VARCHAR(255) UNIQUE,
 	user_name VARCHAR(255),
 	first_name VARCHAR(255),
 	last_name VARCHAR(255),

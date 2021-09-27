@@ -1,5 +1,5 @@
 CREATE TABLE copy_raw_product(
-	product_id VARCHAR(255),
+	product_id VARCHAR(255) UNIQUE,
 	product_name VARCHAR(255),
 	description VARCHAR(255),
 	price VARCHAR(255),

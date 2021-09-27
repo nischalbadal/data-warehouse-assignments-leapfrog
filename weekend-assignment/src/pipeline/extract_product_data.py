@@ -18,11 +18,18 @@ try:
         print("Extraction successful to raw_product table.") 
     
        
-    def archive_product_data(con, cur):
-        with open("../sql/queries/extract_copy_raw_product_data.sql") as f:
-            sql = ' '.join(map(str, f.readlines())) 
-            cur.execute(sql)
-            con.commit()
+    def archive_product_data(fileName,con, cur):
+        with open(fileName, 'r') as f:
+            i = 0
+            for line in f:
+                if i==0:
+                    i+=1
+                    continue
+                row = line[:-1].split(",")
+                with open("../sql/queries/extract_copy_raw_product_data.sql") as f:
+                    sql = ' '.join(map(str, f.readlines()))
+                    cur.execute(sql, row)
+                    con.commit()
 
         print("Archiving successful to copy_raw_product table.") 
 
@@ -68,10 +75,9 @@ try:
         cur = con.cursor()
 
         truncate_table("raw_product", con, cur)
-        truncate_table("copy_raw_product", con, cur)
 
         extract_product_data("../../data/product_dump.csv",con,cur)
-        archive_product_data(con, cur)
+        archive_product_data("../../data/product_dump.csv",con, cur)
 
         truncate_table("fact_product", con, cur)
         load_dim_brand(con, cur)
